@@ -1,0 +1,11 @@
+openai
+transformers
+sentencepiece
+tiktoken
+rich
+pydantic
+pandas
+pyarrow
+chromadb
+tqdm
+sentence-transformers
