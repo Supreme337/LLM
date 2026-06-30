@@ -11,4 +11,6 @@ class RAG:
         context="\n\n".join(results['documents'][0])
         prompt=f"Answer the question based on the context below:\n\nContext: {context}\n\nQuestion: {question}\n\nAnswer:"
         answer=self.llm.generate_response(prompt)
-        return answer
+        return {'question':question,
+                'context':context,
+                'answer':answer}
