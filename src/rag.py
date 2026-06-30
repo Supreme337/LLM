@@ -1,5 +1,6 @@
 from src.retriever import Retriever
 from src.llm import LLM
+from src.prompt_builder import PromptBuilder
 
 class RAG:
     def __init__(self,vector_store):
@@ -9,8 +10,9 @@ class RAG:
     def ask(self,question,k=5):
         results=self.retriever.search(question,k)
         context="\n\n".join(results['documents'][0])
-        prompt=f"Answer the question based on the context below:\n\nContext: {context}\n\nQuestion: {question}\n\nAnswer:"
+        prompt=PromptBuilder.build(context,question)
         answer=self.llm.generate_response(prompt)
         return {'question':question,
                 'context':context,
-                'answer':answer}
+                'answer':answer,
+                'sources':results['metadatas'][0]}
