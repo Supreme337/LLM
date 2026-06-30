@@ -1,7 +1,8 @@
 import pandas as pd
 from sentence_transformers import SentenceTransformer
+from config import Config
 
-def document_generator(df: pd.DataFrame):
+def document_generator(df:pd.DataFrame):
     documents=[]
     for idx,row in df.iterrows():
         text=""
@@ -15,7 +16,7 @@ def document_generator(df: pd.DataFrame):
                     "row": idx}})
     return documents
 
-model_name="BAAI/bge-small-en-v1.5"
+model_name=Config.embedding_model_name
 embedding_model=SentenceTransformer(model_name)
 
 def create_embeddings(documents):

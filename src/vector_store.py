@@ -1,9 +1,10 @@
 import chromadb
+from config import Config
 
 class VectorStore:
     def __init__(self,collection_name:str):
         self.PersistentClient=chromadb.Client()
-        self.collection=self.PersistentClient.get_or_create_collection(name=collection_name)
+        self.collection=self.PersistentClient.get_or_create_collection(collection_name)
     
     def add_documents(self,documents,embeddings):
         ids=[doc["id"] for doc in documents]
